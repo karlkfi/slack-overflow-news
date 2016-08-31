@@ -31,12 +31,16 @@ func main() {
 		log.Fatalf("Failed to parse config: %v", err)
 	}
 
+	log.Infof("Config: %+v", config)
+
 	session := stackongo.NewSession(config.StackSite)
 
+	/*
 	_, err = session.Info()
 	if err != nil {
-		log.Fatalf("Failed to retrieve %s session info: %v", config.StackSite, err)
+		log.Fatalf("Failed to retrieve '%s' session info: %v", config.StackSite, err)
 	}
+	*/
 
 	api := slack.New(config.SlackToken)
 

@@ -12,8 +12,8 @@ GOARCH="${GOARCH:-$(go env GOARCH)}"
 GOOS="${GOOS:-$(go env GOOS)}"
 CMD="pkg/${GOOS}_${GOARCH}/slackstack"
 
-if [ -f "ci/.env" ]; then
-  env $(cat ci/.env | xargs) ${CMD} "$@"
+if [ -f ".env" ]; then
+  env $(cat .env | xargs) ${CMD} "$@"
 else
   ${CMD} "$@"
 fi
