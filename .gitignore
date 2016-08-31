@@ -1,4 +1,5 @@
 # Workspace Files
 .idea
 
-# Other
+# Build Dir
+/pkg
