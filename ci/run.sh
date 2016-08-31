@@ -10,5 +10,10 @@ cd "${project_dir}"
 
 GOARCH="${GOARCH:-$(go env GOARCH)}"
 GOOS="${GOOS:-$(go env GOOS)}"
+CMD="pkg/${GOOS}_${GOARCH}/slackstack"
 
-pkg/${GOOS}_${GOARCH}/slackstack "$@"
+if [ -f "ci/.env" ]; then
+  env $(cat ci/.env | xargs) ${CMD} "$@"
+else
+  ${CMD} "$@"
+fi

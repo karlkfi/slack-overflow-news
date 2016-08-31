@@ -3,3 +3,6 @@
 
 # Build Dir
 /pkg
+
+# Slack token local storage
+.env
