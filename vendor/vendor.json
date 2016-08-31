@@ -9,10 +9,28 @@
 			"revisionTime": "2016-08-29T20:23:21Z"
 		},
 		{
+			"checksumSHA1": "rmRybNo7xbSUOynk9+PbH2sL1Fs=",
+			"path": "github.com/kelseyhightower/envconfig",
+			"revision": "1e291572dcb9ba673cdcdb15e0f422702415ebaf",
+			"revisionTime": "2016-08-19T16:58:30Z"
+		},
+		{
 			"checksumSHA1": "Y8BGKa5WMLuc4G3d6MC9bkXH+fg=",
 			"path": "github.com/laktek/Stack-on-Go/stackongo",
 			"revision": "368e99621c8c1c6d3887789d02ffda97ee6f6f54",
 			"revisionTime": "2014-08-20T00:10:55Z"
+		},
+		{
+			"checksumSHA1": "BUTvC6/V0sBmyz2ZEqyh+Qmrm10=",
+			"path": "github.com/nlopes/slack",
+			"revision": "b7940f209838f93dc7ab0d823145513c9660f22a",
+			"revisionTime": "2016-08-16T14:54:29Z"
+		},
+		{
+			"checksumSHA1": "likOl7O0BJntqagR050kkOBuY4o=",
+			"path": "golang.org/x/net/websocket",
+			"revision": "9bc2a3340c92c17a20edcd0080e93851ed58f5d5",
+			"revisionTime": "2016-08-30T03:17:57Z"
 		},
 		{
 			"checksumSHA1": "8fD/im5Kwvy3JgmxulDTambmE8w=",
