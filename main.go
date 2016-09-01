@@ -8,6 +8,7 @@ import (
 
 	"fmt"
 	"time"
+	"os"
 )
 
 const envPrefix = "SS"
@@ -22,28 +23,36 @@ type Config struct {
 	SlackChannel string	`required:"true" envconfig:"SLACK_CHANNEL"`
 	SlackHistory int	`required:"false" envconfig:"SLACK_HISTORY" default:"30"`
 	SlackDebug bool		`required:"false" envconfig:"SLACK_DEBUG" default:"false"`
+
+	LogLevel string		`required:"false" envconfig:"LOG_LEVEL" default:"INFO"`
 }
 
 func main() {
+	log.SetFormatter(&log.TextFormatter{
+		FullTimestamp: true,
+	})
+
 	var config Config
 	err := envconfig.Process(envPrefix, &config)
 	if err != nil {
-		log.Fatalf("Failed to parse config: %v", err)
+		log.Errorf("Failed to parse config: %v", err)
+		exit(2)
 	}
 
-	log.Infof("Config: %+v", config)
+	level, err := log.ParseLevel(config.LogLevel)
+	if err != nil {
+		log.Errorf("Failed to parse log level '%s': %v", config.LogLevel, err)
+		exit(2)
+	}
+	log.SetLevel(level)
+
+	configCopy := config
+	configCopy.SlackToken = "<redacted>" // don't log secrets
+	log.Infof("Config: %+v", configCopy)
 
 	session := stackongo.NewSession(config.StackSite)
 
-	/*
-	_, err = session.Info()
-	if err != nil {
-		log.Fatalf("Failed to retrieve '%s' session info: %v", config.StackSite, err)
-	}
-	*/
-
 	api := slack.New(config.SlackToken)
-
 	api.SetDebug(config.SlackDebug)
 
 	lastUpdate := time.Now().AddDate(0, 0, -config.SlackHistory)
@@ -75,15 +84,21 @@ func main() {
 			}
 			_, _, err = api.PostMessage(config.SlackChannel, msgText, msgParams)
 			if err != nil {
-				log.Fatalf("Failed to post message: %v", err)
+				log.Errorf("Failed to post message: %v", err)
+				exit(1)
 			}
 		}
 
-		log.Infof("Sleeping %v", config.StackPoll)
+		log.Debugf("Sleeping %v", config.StackPoll)
 		time.Sleep(config.StackPoll)
 	}
 }
 
 func fmtTime(t time.Time) string {
 	return t.Local().Format("2006-01-02 15:04:05 MST")
+}
+
+func exit(exitCode int) {
+	log.Infof("Exit (%d)", exitCode)
+	os.Exit(exitCode)
 }
