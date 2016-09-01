@@ -8,4 +8,4 @@ project_dir="$(cd "$(dirname "${BASH_SOURCE}")/.." && pwd -P)"
 
 cd "${project_dir}"
 
-docker build -t karlkfi/slackstack .
+docker build -t karlkfi/slack-overflow-news .

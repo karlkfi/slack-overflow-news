@@ -1,4 +1,4 @@
-package main // import "github.com/karlkfi/slackstack"
+package main // import "github.com/karlkfi/slack-overflow-news"
 
 import (
 	log "github.com/Sirupsen/logrus"

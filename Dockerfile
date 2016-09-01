@@ -4,6 +4,6 @@ RUN apk update \
     && apk add --no-cache openssh ca-certificates \
     && rm -rf /var/cache/apk/*
 
-ADD pkg/linux_amd64/slackstack /usr/bin/slackstack
+ADD pkg/linux_amd64/slack-overflow-news /usr/bin/slack-overflow-news
 
-ENTRYPOINT ["slackstack"]
+ENTRYPOINT ["slack-overflow-news"]

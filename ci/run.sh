@@ -10,7 +10,7 @@ cd "${project_dir}"
 
 GOARCH="${GOARCH:-$(go env GOARCH)}"
 GOOS="${GOOS:-$(go env GOOS)}"
-CMD="pkg/${GOOS}_${GOARCH}/slackstack"
+CMD="pkg/${GOOS}_${GOARCH}/slack-overflow-news"
 
 if [ -f ".env" ]; then
   env $(cat .env | xargs) ${CMD} "$@"

@@ -12,9 +12,9 @@ GOARCH="${GOARCH:-$(go env GOARCH)}"
 GOOS="${GOOS:-$(go env GOOS)}"
 
 # Build local first for fast feedback
-GOOS="${GOOS}" GOARCH="${GOARCH}" bash -c "go build -o \"pkg/\${GOOS}_\${GOARCH}/slackstack\""
+GOOS="${GOOS}" GOARCH="${GOARCH}" bash -c "go build -o \"pkg/\${GOOS}_\${GOARCH}/slack-overflow-news\""
 
 # Build server binary
 if [[ "${GOOS}" != "linux" ]] || [[ "${GOARCH}" != "amd64" ]]; then
-  GOOS=linux GOARCH=amd64 bash -c "go build -o \"pkg/\${GOOS}_\${GOARCH}/slackstack\""
+  GOOS=linux GOARCH=amd64 bash -c "go build -o \"pkg/\${GOOS}_\${GOARCH}/slack-overflow-news\""
 fi

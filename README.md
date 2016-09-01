@@ -1,4 +1,5 @@
-# slackstack
+# slack-overflow-news
+
 A bot for reporting new Stack Overflow questions into Slack
 
 # Usage
@@ -10,7 +11,7 @@ cp .env.example .env
 Fill out missing config vars in `.env` (like token).
 
 ```
-docker run -it --env-file "$(pwd)/.env" karlkfi/slackstack
+docker run -it --env-file "$(pwd)/.env" karlkfi/slack-overflow-news
 ```
 
 # Build
