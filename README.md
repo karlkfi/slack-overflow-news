@@ -2,6 +2,8 @@
 
 A bot for reporting new Stack Overflow questions into Slack
 
+[Docker Image Available](https://hub.docker.com/r/karlkfi/slack-overflow-news/)
+
 # Usage
 
 Create a `.env` file:
