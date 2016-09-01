@@ -4,11 +4,15 @@ A bot for reporting new Stack Overflow questions into Slack
 
 # Usage
 
+Create a `.env` file:
+
 ```
-cp .env.example .env
+curl -o .env https://raw.githubusercontent.com/karlkfi/slack-overflow-news/master/.env.example
 ```
 
 Fill out missing config vars in `.env` (like token).
+
+Run slack-overflow-news in Docker:
 
 ```
 docker run -it --env-file "$(pwd)/.env" karlkfi/slack-overflow-news
