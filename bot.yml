@@ -1,0 +1,3 @@
+name: Slack Overflow News
+description: A Slack bot for reporting new Stack Overflow questions
+avatar: resources/stackoverflow-icon.png

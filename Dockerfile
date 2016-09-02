@@ -1,9 +1,10 @@
-FROM alpine:3.3
+FROM golang:1.6.3-alpine
 
 RUN apk update \
     && apk add --no-cache openssh ca-certificates \
     && rm -rf /var/cache/apk/*
 
-ADD pkg/linux_amd64/slack-overflow-news /usr/bin/slack-overflow-news
+ADD . /go/src/github.com/karlkfi/slack-overflow-news
+RUN go install ./...
 
-ENTRYPOINT ["slack-overflow-news"]
+ENTRYPOINT ["/go/bin/slack-overflow-news"]
