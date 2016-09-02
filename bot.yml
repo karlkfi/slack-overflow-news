@@ -28,7 +28,7 @@ config:
   type: text
   global: true
 - name: SS_SLACK_CHANNEL
-  friendly_name: Bot User Name
+  friendly_name: Slack Channel
   info: Name of the Slack channel to post to (e.g. stackoverflow)
   type: text
   global: true
