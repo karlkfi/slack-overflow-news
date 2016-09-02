@@ -20,7 +20,9 @@ const envPrefix = "SS"
 type Config struct {
 	StackSite string	`required:"true" envconfig:"STACK_SITE"`
 	StackTags string	`required:"true" envconfig:"STACK_TAGS"`
-	StackPoll time.Duration	`required:"false" envconfig:"STACK_POLL" default:"30s"`
+	// Unauthenticated quota is 300 requests per day, which is about 1 request every 5 minutes
+	// Authenticated quota is 10,000 requests per day, which is about 1 request every 10 seconds
+	StackPoll time.Duration	`required:"false" envconfig:"STACK_POLL" default:"5m"`
 	StackHistory int	`required:"false" envconfig:"STACK_HISTORY" default:"30"`
 
 	SlackToken string	`required:"true" envconfig:"SLACK_TOKEN"`
@@ -103,6 +105,9 @@ func main() {
 
 		results, err := stackClient.AllQuestions(reqParams)
 		if err != nil {
+			// Errors of type throttle_violation don't come with a backoff field.
+			// So the only way to know how long to wait would be to parse the error message.
+			// Unfortunately, crashing and restarting means thrashing until the ban is lifted...
 			log.Errorf("Failed to query %s: %v", config.StackSite, err)
 			exit(1)
 		}
@@ -127,8 +132,15 @@ func main() {
 			latestReport = time.Unix(question.Creation_date, 0)
 		}
 
-		log.Debugf("Sleeping %v", config.StackPoll)
-		time.Sleep(config.StackPoll)
+		sleepDuration := config.StackPoll
+		backoff := time.Duration(results.Backoff) * time.Second
+		if backoff > sleepDuration  {
+			sleepDuration = backoff
+			log.Warnf("Throttled! - Endpoint (/questions) backoff (%v) longer than configured polling period (%v)", sleepDuration, config.StackPoll)
+		}
+
+		log.Debugf("Sleeping %v", sleepDuration)
+		time.Sleep(sleepDuration)
 	}
 }
 

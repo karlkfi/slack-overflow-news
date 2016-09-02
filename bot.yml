@@ -14,7 +14,7 @@ config:
   global: true
 - name: SS_STACK_POLL
   friendly_name: Poll Period
-  info: Time to sleep between polling Stack Exchange (e.g. 30s)
+  info: Time to sleep between polling Stack Exchange (e.g. 5m)
   type: text
   global: true
 - name: SS_STACK_HISTORY
