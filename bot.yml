@@ -6,12 +6,12 @@ config:
   friendly_name: Site Name
   info: Stack Exchange site name (e.g. stackoverflow)
   type: text
-  global: false
+  global: true
 - name: SS_STACK_TAGS
   friendly_name: Question Tags
   info: Comma seperated list of tags to filter questions by
   type: text
-  global: false
+  global: true
 - name: SS_STACK_POLL
   friendly_name: Poll Period
   info: Time to sleep between polling Stack Exchange (e.g. 30s)
@@ -26,12 +26,12 @@ config:
   friendly_name: Bot User Name
   info: Name to use when posting messages to Slack
   type: text
-  global: false
+  global: true
 - name: SS_SLACK_CHANNEL
   friendly_name: Bot User Name
   info: Name of the Slack channel to post to (e.g. stackoverflow)
   type: text
-  global: false
+  global: true
 - name: SS_SLACK_DEBUG
   friendly_name: Slack Debug
   info: Verbose Slack API logging
