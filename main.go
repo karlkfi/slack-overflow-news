@@ -21,11 +21,11 @@ type Config struct {
 	StackSite string	`required:"true" envconfig:"STACK_SITE"`
 	StackTags string	`required:"true" envconfig:"STACK_TAGS"`
 	StackPoll time.Duration	`required:"false" envconfig:"STACK_POLL" default:"30s"`
+	StackHistory int	`required:"false" envconfig:"STACK_HISTORY" default:"30"`
 
 	SlackToken string	`required:"true" envconfig:"SLACK_TOKEN"`
 	SlackUserName string	`required:"true" envconfig:"SLACK_USERNAME"`
 	SlackChannel string	`required:"true" envconfig:"SLACK_CHANNEL"` // channel name, not ID
-	SlackHistory int	`required:"false" envconfig:"SLACK_HISTORY" default:"30"`
 	SlackDebug bool		`required:"false" envconfig:"SLACK_DEBUG" default:"false"`
 
 	LogLevel string		`required:"false" envconfig:"LOG_LEVEL" default:"INFO"`
@@ -89,7 +89,7 @@ func main() {
 	if err != nil {
 		log.Warnf("Failed to lookup last reported question: %v", err)
 		// use configured history duration
-		latestReport = time.Now().AddDate(0, 0, -config.SlackHistory)
+		latestReport = time.Now().AddDate(0, 0, -config.StackHistory)
 	} else {
 		log.Infof("Found last reported question: %v", fmtTime(latestReport))
 	}

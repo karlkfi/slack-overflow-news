@@ -1,3 +1,36 @@
 name: Slack Overflow News
 description: A Slack bot for reporting new Stack Overflow questions
 avatar: resources/stackoverflow-icon.png
+config:
+- name: SS_STACK_SITE
+  friendly_name: Site Name
+  info: Stack Exchange site name (e.g. stackoverflow)
+  type: text
+- name: SS_STACK_TAGS
+  friendly_name: Question Tags
+  info: Comma seperated list of tags to filter questions by
+  type: text
+- name: SS_STACK_POLL
+  friendly_name: Poll Period
+  info: Time to sleep between polling Stack Exchange (e.g. 30s)
+  type: text
+- name: SS_STACK_HISTORY
+  friendly_name: Question Age
+  info: How many days into the past to lookup Stack Exchange questions, if no recent bot messages are found
+  type: text
+- name: SS_SLACK_USERNAME
+  friendly_name: Bot User Name
+  info: Name to use when posting messages to Slack
+  type: text
+- name: SS_SLACK_CHANNEL
+  friendly_name: Bot User Name
+  info: Name of the Slack channel to post to (e.g. stackoverflow)
+  type: text
+- name: SS_SLACK_DEBUG
+  friendly_name: Slack Debug
+  info: Verbose Slack API logging
+  type: text
+- name: SS_LOG_LEVEL
+  friendly_name: Logging Level
+  info: Level of logs to print (e.g. INFO)
+  type: text
