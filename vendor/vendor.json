@@ -9,6 +9,12 @@
 			"revisionTime": "2016-08-29T20:23:21Z"
 		},
 		{
+			"checksumSHA1": "FnR1zvUvK6aui2XELTqvuhY/T4g=",
+			"path": "github.com/cloudfoundry/bosh-utils/errors",
+			"revision": "8997f28964f1fbe519f48e8d824cd69a792bc82f",
+			"revisionTime": "2016-08-31T17:32:40Z"
+		},
+		{
 			"checksumSHA1": "rmRybNo7xbSUOynk9+PbH2sL1Fs=",
 			"path": "github.com/kelseyhightower/envconfig",
 			"revision": "1e291572dcb9ba673cdcdb15e0f422702415ebaf",
